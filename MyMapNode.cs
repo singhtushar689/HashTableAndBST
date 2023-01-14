@@ -67,7 +67,39 @@ namespace HashTableAndBST
                     return item.Value;
                 }
             }
-            return default;
+            return default(V);
+
+        }
+        public void findFreq(string[] Words)
+        {
+            //print freqency of each word in Hash table
+            int[] freqency = new int[Words.Length];
+            //declare if that word already visited or not
+            int visited = -1;
+            for (int i = 0; i < Words.Length; i++)
+            {
+                int count = 1;
+                for (int j = i + 1; j < Words.Length; j++)
+                {
+                    if (Words[i] == Words[j])
+                    {
+                        count++;
+                        freqency[j] = visited;
+                    }
+                }
+                if (freqency[i] != visited)
+                {
+                    freqency[i] = count;
+                }
+            }
+            //Print the frequency of each word in Hash table
+            for (int i = 0; i < Words.Length; i++)
+            {
+                if (freqency[i] != visited)
+                {
+                    Console.WriteLine(" Frequency of '" + Words[i] + "' is :-->" + freqency[i]);
+                }
+            }
         }
     }
 }

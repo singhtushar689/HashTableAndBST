@@ -2,49 +2,56 @@
 {
     internal class HashMap
     {
-        static void Main(string[] args)
+        static void HashFunction(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            string[] Words = "to be or not to be".Split(" ");
-            MyMapNode<int, string> hash = new MyMapNode<int, string>(5);
-            for (int i = 0; i < Words.Length; i++)
+            Console.WriteLine("\n****************************************************************");
+            Console.WriteLine("Press 1 : For Search word in sentence\nPress 2 : For search word in Paragraph");
+            Console.WriteLine("\n****************************************************************");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
             {
-                hash.Add(i, Words[i]);
-            }
-            Console.WriteLine("****************************************************************\n");
-            for (int i = 0; i < Words.Length; i++)
-            {
-                Console.WriteLine("value at index " + i + " is: " + hash.Get(i));
-            }
-            Console.WriteLine("****************************************************************\n");
-            //print freqency of each word in Hash table
-            int[] freqency = new int[Words.Length];
-            //declare if that word already visited or not
-            int visited = -1;
-            for (int i = 0; i < Words.Length; i++)
-            {
-                int count = 1;
-                for (int j = i + 1; j < Words.Length; j++)
-                {
-                    if (Words[i] == Words[j])
+                case 1:
+                    string[] str1 = "to be or not to be".Split(" ");
+                    MyMapNode<int, string> sentenceHash = new MyMapNode<int, string>(5);
+                    for (int i = 0; i < str1.Length; i++)
                     {
-                        count++;
-                        freqency[j] = visited;
+                        sentenceHash.Add(i, str1[i]);
                     }
-                }
-                if (freqency[i] != visited)
-                {
-                    freqency[i] = count;
-                }
-            }
-            //Print the frequency of each word in Hash table
-            for (int i = 0; i < Words.Length; i++)
-            {
-                if (freqency[i] != visited)
-                {
-                    Console.WriteLine(" Frequency of '" + Words[i] + "' is " + freqency[i]);
-                }
+                    Console.WriteLine("****************************************************************\n");
+                    for (int i = 0; i < str1.Length; i++)
+                    {
+                        Console.WriteLine("value at index " + i + " is: " + sentenceHash.Get(i));
+                    }
+                    Console.WriteLine("****************************************************************\n");
+                    sentenceHash.findFreq(str1);
+                    break;
+                case 2:
+                    string[] str2 = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations".Split(" ");
+                    MyMapNode<int, string> paragraphHash = new MyMapNode<int, string>(5);
+                    for (int i = 0; i < str2.Length; i++)
+                    {
+                        paragraphHash.Add(i, str2[i]);
+                    }
+                    Console.WriteLine("****************************************************************\n");
+                    for (int i = 0; i < str2.Length; i++)
+                    {
+                        Console.WriteLine("value at index " + i + " is: " + paragraphHash.Get(i));
+                    }
+                    Console.WriteLine("****************************************************************\n");
+                    paragraphHash.findFreq(str2);
+                    break;
+                default:
+                    Console.WriteLine("Invalid option");
+                    break;
             }
         }
     }
 }
+
+        
+       
+           
+                
+            
+        
+    
